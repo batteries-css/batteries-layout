@@ -1,0 +1,47 @@
+// generate an escaped @percent wide column class
+.grid-get-percent-column(@percent) {
+	.utils-escape-number-to-string(@percent);
+
+	.@{return-escaped}\%.column {
+		width: (@percent * 1%);
+	}
+}
+
+// generate a fraction column which is @numerator/@denominator wide
+.grid-get-fraction-column(@numerator; @denominator) {
+	.utils-escape-numbers-to-string(@numerator, @denominator);
+
+	@numerator-escaped: @return-number1;
+	@denominator-escaped: @return-number2;
+
+	.@{numerator-escaped}\/@{denominator-escaped}.column {
+		width: (@numerator / @denominator * 100%);
+	}
+}
+
+// generate all fraction classes with the same @denominator
+.grid-get-all-fraction-columns(@denominator) when (@denominator > 1) {
+	.loop(@index) when (@index > 0) and (@index < @denominator) {
+		.grid-get-fraction-column(@index, @denominator);
+
+		.loop((@index - 1));
+	}
+
+	.loop((@denominator - 1));
+}
+
+// generate all percent columns
+.grid-get-all-percent-columns() {
+	// generate special columns, 1/3, 2/3, 1/6, ...
+	.grid-get-all-fraction-columns(3);
+	.grid-get-all-fraction-columns(6);
+
+	// generate the usual percent columns
+	.loop(@index) when (@index > 0) {
+		.grid-get-percent-column(@index);
+
+		.loop((@index - @grid-column-steps));
+	}
+
+	.loop(100);
+}

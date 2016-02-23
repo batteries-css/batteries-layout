@@ -1,0 +1,49 @@
+@import "mixins.less";
+
+.grid {
+	.row {
+		margin-left: -@grid-gutter-width;
+		margin-right: -@grid-gutter-width;
+
+		&:after {
+			content: " ";
+			display: table;
+
+			clear: both;
+		}
+
+		.column {
+			padding-left: @grid-gutter-width;
+			padding-right: @grid-gutter-width;
+
+			float: left;
+
+			// if there's only 1 column we'll make it full width
+			width: 100%;
+		}
+
+		.grid-get-all-percent-columns();
+	}
+
+	.forced.stacked.row {
+		.column {
+			width: 100%;
+		}
+	}
+
+	@media screen and (max-width: @viewport-width-tablet) {
+		.mobile.stacked.row {
+			.column {
+				width: 100%;
+			}
+		}
+	}
+
+	@media screen and (max-width: @viewport-width-desktop) {
+		.tablet.stacked.row {
+			.column {
+				width: 100%;
+			}
+		}
+	}
+}

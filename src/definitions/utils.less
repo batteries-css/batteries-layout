@@ -1,0 +1,33 @@
+@utils-escape-number-to-string: ~`utilsEscapeNumberToString = function (number) { 
+	var digits = [];
+
+	while (Math.floor(number) != 0) {
+		var lastDigit = Math.floor(number % 10);
+		digits.push(lastDigit);
+
+		number /= 10;
+	}
+
+	digits.reverse();
+
+	var zero = 30,
+		className = "";
+
+	for (var i = 0; i < digits.length; i++) {
+		className += "\\" + (zero + digits[i]);
+	}
+
+	return className; 
+}`;
+
+.utils-escape-number-to-string(@number) {
+	@load-util: @utils-escape-number-to-string;
+	@return-escaped: ~`utilsEscapeNumberToString(@{number})`;
+}
+
+.utils-escape-numbers-to-string(@number1; @number2) {
+	@load-util: @utils-escape-number-to-string;
+
+	@return-number1: ~`utilsEscapeNumberToString(@{number1})`;
+	@return-number2: ~`utilsEscapeNumberToString(@{number2})`;
+}

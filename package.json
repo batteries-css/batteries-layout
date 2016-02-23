@@ -1,0 +1,11 @@
+{
+	"devDependencies": {
+		"gulp": "*",
+		"gulp-replace": "*",
+		"gulp-less": "*",
+		"gulp-sourcemaps": "*",
+		"gulp-rename": "*",
+		"gulp-minify-css": "*",
+		"gulp-autoprefixer": "*"
+	}
+}

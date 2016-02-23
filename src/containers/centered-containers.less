@@ -1,0 +1,31 @@
+.container {
+	.centered-base() {
+		position: absolute;
+	}
+
+	.horizontal-center() {
+		.centered-base();
+
+		left: 50%;
+
+		transform: translateX(-50%);
+	}
+
+	.vertical-center() {
+		.centered-base();
+
+		top: 50%;
+
+		transform: translateY(-50%);
+	}
+
+	.horizontally.centered,
+	.fully.centered {
+		.horizontal-center();
+	}
+
+	.vertically.centered,
+	.fully.centered {
+		.vertical-center();
+	}
+}
